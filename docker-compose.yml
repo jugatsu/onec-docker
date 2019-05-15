@@ -1,0 +1,65 @@
+version: '3.3'
+
+services:
+
+  srv:
+    image: jugatsu/onec:8.3.12.1714-server
+    hostname: srv
+    ports:
+      - "1540-1541:1540-1541"
+      - "1560:1560"
+    volumes:
+      - srv_data:/home/usr1cv8/.1cv8
+      - srv_log:/var/log/1C
+    networks:
+      - back_net
+
+  db:
+    image: rsyuzyov/docker-postgresql-pro-1c:latest
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql
+    networks:
+      back_net:
+        aliases:
+          - db
+
+  repo:
+    image: jugatsu/onec:8.3.12.1714-crs
+    ports:
+      - "1542:1542"
+    volumes:
+      - repo_data:/home/usr1cv8/.1cv8
+    networks:
+      - back_net
+
+  ras:
+    image: jugatsu/onec:8.3.12.1714-server
+    entrypoint: /opt/1C/v8.3/x86_64/ras
+    command: "cluster srv:1540"
+    ports:
+      - "1545:1545"
+    networks:
+      - back_net
+
+  client:
+    image: jugatsu/onec:8.3.12.1714-client
+    entrypoint: /opt/1C/v8.3/x86_64/1cv8s
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - client_data:/home/usr1cv8/.1cv8
+    environment:
+      - DISPLAY=docker.for.mac.localhost:0
+    networks:
+      - back_net
+
+volumes:
+  srv_data: {}
+  srv_log: {}
+  db_data: {}
+  repo_data: {}
+  client_data: {}
+
+networks:
+  back_net: {}

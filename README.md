@@ -4,7 +4,7 @@
 
 В данном репозитории находятся файлы для сборки образов [1С:Преприятия 8.3](http://v8.1c.ru) для [Docker](https://www.docker.com).
 
-> Скрипт скачивания платформы позаимствован отсюда https://github.com/Infactum/onec_dock/blob/master/download.sh
+> Скрипт скачивания платформы позаимствован отсюда https://github.com/Infactum/onec_dock/blob/master/download.sh :+1:
 
 # Использование
 
@@ -39,7 +39,7 @@ $ eval $(cat .onec.env)
 - [rac-gui](#license)
 - [gitsync](#license)
 
-> Введите в терминале команду `docker build` из соответствующего параграфа
+:point_up: Введите в терминале команду `docker build` из соответствующего параграфа
 
 ## Сервер
 [(Back to top)](#Оглавление)

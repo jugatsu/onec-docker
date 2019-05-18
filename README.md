@@ -125,7 +125,10 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
 [(Back to top)](#Оглавление)
 
 ```bash
-docker build -t ${DOCKER_USERNAME}/onec:${ONEC_VERSION}-rac -f rac/Dockerfile .
+docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
+  --build-arg ONEC_VERSION=${ONEC_VERSION} \
+  -t ${DOCKER_USERNAME}/onec:${ONEC_VERSION}-rac-gui \
+  -f rac-gui/Dockerfile .
 ```
 
 ## gitsync

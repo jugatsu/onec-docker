@@ -1,4 +1,7 @@
-FROM jugatsu/onec:8.3.12.1714-server
+ARG DOCKER_USERNAME
+ARG ONEC_VERSION
+
+FROM ${DOCKER_USERNAME}/onec:${ONEC_VERSION}-server
 LABEL maintainer="Anton Kvashenkin <anton.jugatsu@gmail.com> (@jugatsu)"
 
 ARG gui_ver=1.0.1

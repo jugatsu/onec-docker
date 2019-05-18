@@ -27,6 +27,12 @@ $ cp .onec.env.example .onec.env
 $ eval $(cat .onec.env)
 ```
 
+# Как сбилдить образы
+
+:point_up: Введите в терминале команду `docker build` из соответствующей секции.
+
+:tada: Или, если установлен `make`, досточно команды `make all`.
+
 # Оглавление
 
 - [Сервер](#сервер)
@@ -38,10 +44,6 @@ $ eval $(cat .onec.env)
 - [Хранилище конфигурации](#contributing)
 - [rac-gui](#license)
 - [gitsync](#license)
-
-:point_up: Введите в терминале команду `docker build` из соответствующей секции.
-
-:tada: Или, если установлен `make`, досточно команды `make all`.
 
 ## Сервер
 [(Back to top)](#Оглавление)

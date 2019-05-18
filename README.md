@@ -59,7 +59,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
 docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
   --build-arg ONEC_PASSWORD=${ONEC_PASSWORD} \
   --build-arg ONEC_VERSION=${ONEC_VERSION} \
-  --build-arg nls_enabled=true
+  --build-arg nls_enabled=true \
   -t ${DOCKER_USERNAME}/onec:${ONEC_VERSION}-server \
   -f server/Dockerfile .
 ```

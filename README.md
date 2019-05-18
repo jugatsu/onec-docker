@@ -39,7 +39,9 @@ $ eval $(cat .onec.env)
 - [rac-gui](#license)
 - [gitsync](#license)
 
-:point_up: Введите в терминале команду `docker build` из соответствующего параграфа
+:point_up: Введите в терминале команду `docker build` из соответствующей секции.
+
+:tada: Или, если установлен `make`, досточно команды `make all`.
 
 ## Сервер
 [(Back to top)](#Оглавление)

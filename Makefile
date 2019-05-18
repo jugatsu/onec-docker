@@ -2,7 +2,7 @@ BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 GIT_HASH = $(shell git show --format="%h" HEAD | head -1)
 VERSION ?= latest
 
-.PHONY: all server server-nls client client-nls thin-client thin-client-nls crs rac-gui gitsync push
+.PHONY: all server server-nls client client-nls thin-client thin-client-nls crs rac-gui gitsync
 
 all: server client thin-client crs
 

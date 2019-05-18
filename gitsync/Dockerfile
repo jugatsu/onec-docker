@@ -1,4 +1,6 @@
-FROM jugatsu/onec:8.3.12.1714-client as base
+ARG DOCKER_USERNAME
+ARG ONEC_VERSION
+FROM ${DOCKER_USERNAME}/onec:${ONEC_VERSION}-client as base
 
 FROM mono:5.20-slim
 LABEL maintainer="Anton Kvashenkin <anton.jugatsu@gmail.com> (@jugatsu)"

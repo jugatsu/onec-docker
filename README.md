@@ -135,5 +135,8 @@ docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
 [(Back to top)](#Оглавление)
 
 ```bash
-docker build -t ${DOCKER_USERNAME}/gitsync:3.0.0 -f gitsync/Dockerfile .
+docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
+  --build-arg ONEC_VERSION=${ONEC_VERSION} \
+  -t ${DOCKER_USERNAME}/gitsync:3.0.0 \
+  -f gitsync/Dockerfile .
 ```

@@ -48,7 +48,7 @@ $ eval $(cat .onec.env)
 docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
   --build-arg ONEC_PASSWORD=${ONEC_PASSWORD} \
   --build-arg ONEC_VERSION=${ONEC_VERSION} \
-  -t ${DOCKER_USERNAME}/onec:${ONEC_VERSION}-server \
+  -t ${DOCKER_USERNAME}/onec-server:${ONEC_VERSION} \
   -f server/Dockerfile .
 ```
 
@@ -60,7 +60,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
   --build-arg ONEC_PASSWORD=${ONEC_PASSWORD} \
   --build-arg ONEC_VERSION=${ONEC_VERSION} \
   --build-arg nls_enabled=true \
-  -t ${DOCKER_USERNAME}/onec:${ONEC_VERSION}-server \
+  -t ${DOCKER_USERNAME}/onec-server-nls:${ONEC_VERSION} \
   -f server/Dockerfile .
 ```
 
@@ -71,7 +71,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
 docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
   --build-arg ONEC_PASSWORD=${ONEC_PASSWORD} \
   --build-arg ONEC_VERSION=${ONEC_VERSION} \
-  -t ${DOCKER_USERNAME}/onec:${ONEC_VERSION}-client \
+  -t ${DOCKER_USERNAME}/onec-client:${ONEC_VERSION} \
   -f client/Dockerfile .
 ```
 
@@ -83,7 +83,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
   --build-arg ONEC_PASSWORD=${ONEC_PASSWORD} \
   --build-arg ONEC_VERSION=${ONEC_VERSION} \
   --build-arg nls_enabled=true \
-  -t ${DOCKER_USERNAME}/onec:${ONEC_VERSION}-client \
+  -t ${DOCKER_USERNAME}/onec-client-nls:${ONEC_VERSION} \
   -f client/Dockerfile .
 ```
 
@@ -94,7 +94,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
 docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
   --build-arg ONEC_PASSWORD=${ONEC_PASSWORD} \
   --build-arg ONEC_VERSION=${ONEC_VERSION} \
-  -t ${DOCKER_USERNAME}/onec:${ONEC_VERSION}-thin-client \
+  -t ${DOCKER_USERNAME}/onec-thin-client:${ONEC_VERSION} \
   -f thin-client/Dockerfile .
 ```
 
@@ -106,7 +106,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
   --build-arg ONEC_PASSWORD=${ONEC_PASSWORD} \
   --build-arg ONEC_VERSION=${ONEC_VERSION} \
   --build-arg nls_enabled=true \
-  -t ${DOCKER_USERNAME}/onec:${ONEC_VERSION}-thin-client \
+  -t ${DOCKER_USERNAME}/onec-thin-client-nls:${ONEC_VERSION} \
   -f thin-client/Dockerfile .
 ```
 
@@ -117,7 +117,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
 docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
   --build-arg ONEC_PASSWORD=${ONEC_PASSWORD} \
   --build-arg ONEC_VERSION=${ONEC_VERSION} \
-  -t ${DOCKER_USERNAME}/onec:${ONEC_VERSION}-crs \
+  -t ${DOCKER_USERNAME}/onec-crs:${ONEC_VERSION} \
   -f crs/Dockerfile .
 ```
 
@@ -127,7 +127,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
 ```bash
 docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
   --build-arg ONEC_VERSION=${ONEC_VERSION} \
-  -t ${DOCKER_USERNAME}/onec:${ONEC_VERSION}-rac-gui \
+  -t ${DOCKER_USERNAME}/onec-rac-gui:${ONEC_VERSION}-1.0.1 \
   -f rac-gui/Dockerfile .
 ```
 

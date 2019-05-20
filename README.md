@@ -46,7 +46,7 @@ $ eval $(cat .onec.env)
 - [gitsync](#license)
 
 ## Сервер
-[(Back to top)](#Оглавление)
+[(Наверх)](#Оглавление)
 
 ```bash
 docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
@@ -57,7 +57,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
 ```
 
 ## Сервер с дополнительными языками
-[(Back to top)](#Оглавление)
+[(Наверх)](#Оглавление)
 
 ```bash
 docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
@@ -69,7 +69,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
 ```
 
 ## Клиент
-[(Back to top)](#Оглавление)
+[(Наверх)](#Оглавление)
 
 ```bash
 docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
@@ -80,7 +80,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
 ```
 
 ## Клиент с дополнительными языками
-[(Back to top)](#Оглавление)
+[(Наверх)](#Оглавление)
 
 ```bash
 docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
@@ -92,7 +92,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
 ```
 
 ## Тонкий клиент
-[(Back to top)](#Оглавление)
+[(Наверх)](#Оглавление)
 
 ```bash
 docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
@@ -103,7 +103,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
 ```
 
 ## Тонкий клиент с дополнительными языками
-[(Back to top)](#Оглавление)
+[(Наверх)](#Оглавление)
 
 ```bash
 docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
@@ -115,7 +115,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
 ```
 
 ## Хранилище конфигурации
-[(Back to top)](#Оглавление)
+[(Наверх)](#Оглавление)
 
 ```bash
 docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
@@ -126,7 +126,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
 ```
 
 ## rac-gui
-[(Back to top)](#Оглавление)
+[(Наверх)](#Оглавление)
 
 ```bash
 docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
@@ -136,7 +136,7 @@ docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
 ```
 
 ## gitsync
-[(Back to top)](#Оглавление)
+[(Наверх)](#Оглавление)
 
 ```bash
 docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \

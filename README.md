@@ -14,7 +14,7 @@
 $ cp .onec.env.example .onec.env
 ```
 
-Скорректируйте файл `.onec.env` в соответствии со своим окружение.
+Скорректируйте файл `.onec.env` в соответствии со своим окружением:
 
 * ONEC_USERNAME - учётная запись на http://releases.1c.ru
 * ONEC_PASSWORD - пароль для учётной записи на http://releases.1c.ru

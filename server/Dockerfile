@@ -11,7 +11,7 @@ WORKDIR /tmp
 
 RUN apk --no-cache add bash curl grep \
   && chmod +x /download.sh \
-  && /download.sh \
+  && sync; /download.sh \
   && for file in *.tar.gz; do tar -zxf "$file"; done \
   && rm -rf *.tar.gz
 

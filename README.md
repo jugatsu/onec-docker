@@ -27,11 +27,20 @@ $ cp .onec.env.example .onec.env
 $ eval $(cat .onec.env)
 ```
 
-# Как сбилдить образы
+## Как сбилдить образы
 
 :point_up: Введите в терминале команду `docker build` из соответствующей секции.
 
 :tada: Или, если установлен `make`, досточно команды `make all`.
+
+## Как запустить в docker-compose
+:exclamation: тестировалось только на macOS Mojave и Ubuntu 16.04/18.04
+
+```bash
+$ cp .env.example .env
+# подправьте файл .env под себя
+$ docker-compose up -d
+```
 
 # Оглавление
 

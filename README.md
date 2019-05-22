@@ -19,7 +19,7 @@ $ cp .onec.env.example .onec.env
 * ONEC_USERNAME - учётная запись на http://releases.1c.ru
 * ONEC_PASSWORD - пароль для учётной записи на http://releases.1c.ru
 * ONEC_VERSION - версия платформы 1С:Преприятия 8.3, которая будет в образе
-* DOCKER_USERNAME - учетная запись на [Docker Hub](https://hub.docker.com)
+* DOCKER_USERNAME - учётная запись на [Docker Hub](https://hub.docker.com)
 
 Затем экспортируйте все необходимые переменные:
 

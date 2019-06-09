@@ -53,6 +53,8 @@ $ docker-compose up -d
 - [Хранилище конфигурации](#contributing)
 - [rac-gui](#license)
 - [gitsync](#license)
+- [oscript](#license)
+- [vanessa-runner](#license)
 
 ## Сервер
 [(Наверх)](#Оглавление)
@@ -152,4 +154,23 @@ docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
   --build-arg ONEC_VERSION=${ONEC_VERSION} \
   -t ${DOCKER_USERNAME}/gitsync:3.0.0 \
   -f gitsync/Dockerfile .
+```
+
+## oscript
+[(Наверх)](#Оглавление)
+
+```bash
+docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
+  --build-arg ONEC_VERSION=${ONEC_VERSION} \
+  -t ${DOCKER_USERNAME}/oscript:1.0.21 \
+  -f oscript/Dockerfile .
+```
+
+## vanessa-runner
+[(Наверх)](#Оглавление)
+
+```bash
+docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
+  -t ${DOCKER_USERNAME}/runner:1.7.0 \
+  -f vanessa-runner/Dockerfile .
 ```

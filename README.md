@@ -47,6 +47,7 @@ $ docker-compose up -d
 - [Сервер](#сервер)
 - [Сервер с дополнительными языками](#Сервер-с-дополнительными-языками)
 - [Клиент](#support)
+- [Клиент с поддержкой VNC](#support)
 - [Клиент с дополнительными языками](#support)
 - [Тонкий клиент](#support)
 - [Тонкий клиент с дополнительными языками](#support)
@@ -88,6 +89,16 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
   --build-arg ONEC_VERSION=${ONEC_VERSION} \
   -t ${DOCKER_USERNAME}/onec-client:${ONEC_VERSION} \
   -f client/Dockerfile .
+```
+
+## Клиент с поддержкой VNC
+[(Наверх)](#Оглавление)
+
+```bash
+docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
+  --build-arg ONEC_VERSION=${ONEC_VERSION} \
+  -t ${DOCKER_USERNAME}/onec-client-vnc:${ONEC_VERSION} \
+  -f client-vnc/Dockerfile .
 ```
 
 ## Клиент с дополнительными языками

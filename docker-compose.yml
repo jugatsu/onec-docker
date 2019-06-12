@@ -44,14 +44,12 @@ services:
       - back_net
 
   client:
-    image: ${DOCKER_USERNAME}/onec-client:${ONEC_VERSION}
-    entrypoint: /opt/1C/v8.3/x86_64/1cv8s
+    image: ${DOCKER_USERNAME}/onec-client-vnc:${ONEC_VERSION}
+    ports:
+      - "5900:5900"
     volumes:
-      - /tmp/.X11-unix:/tmp/.X11-unix
       - client_data:/home/usr1cv8/.1cv8
       - ${PWD}/nethasp.ini:/opt/1C/v8.3/x86_64/conf/nethasp.ini
-    environment:
-      - DISPLAY=${X11_HOST}:0
     networks:
       - back_net
 

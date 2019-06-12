@@ -1,0 +1,3 @@
+#!/usr/bin/with-contenv sh
+
+exec /usr/bin/Xvfb $DISPLAY -screen 0 ${DISPLAY_WIDTH}x${DISPLAY_HEIGHT}x24

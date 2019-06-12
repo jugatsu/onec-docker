@@ -2,7 +2,7 @@ BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 GIT_HASH = $(shell git show --format="%h" HEAD | head -1)
 VERSION ?= latest
 
-.PHONY: all server server-nls client client-nls thin-client thin-client-nls crs rac-gui gitsync oscript runner
+.PHONY: all server server-nls client client-vnc client-nls thin-client thin-client-nls crs rac-gui gitsync oscript runner
 
 all: server client thin-client crs
 
@@ -30,6 +30,13 @@ client:
 		-t ${DOCKER_USERNAME}/onec-client:${ONEC_VERSION} \
 		-f client/Dockerfile .
 	docker tag ${DOCKER_USERNAME}/onec-client:${ONEC_VERSION} ${DOCKER_USERNAME}/onec-client:latest
+
+client-vnc:
+	docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
+		--build-arg ONEC_VERSION=${ONEC_VERSION} \
+		-t ${DOCKER_USERNAME}/onec-client-vnc:${ONEC_VERSION} \
+		-f client-vnc/Dockerfile .
+	docker tag ${DOCKER_USERNAME}/onec-client-vnc:${ONEC_VERSION} ${DOCKER_USERNAME}/onec-client-vnc:latest
 
 client-nls:
 	docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \

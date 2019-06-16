@@ -2,7 +2,7 @@ BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 GIT_HASH = $(shell git show --format="%h" HEAD | head -1)
 VERSION ?= latest
 
-.PHONY: all server server-nls client client-vnc client-nls thin-client thin-client-nls crs rac-gui gitsync oscript runner
+.PHONY: all server server-nls client client-vnc client-nls thin-client thin-client-nls crs rac-gui gitsync oscript oscript-utils runner
 
 all: server client thin-client crs
 
@@ -92,6 +92,11 @@ oscript:
 		-t ${DOCKER_USERNAME}/oscript:1.0.21 \
 		-f oscript/Dockerfile .
 	docker tag ${DOCKER_USERNAME}/oscript:1.0.21 ${DOCKER_USERNAME}/oscript:latest
+
+oscript-utils:
+	docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
+		-t ${DOCKER_USERNAME}/oscript-utils:latest \
+		-f oscript-utils/Dockerfile .
 
 runner:
 	docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \

@@ -25,6 +25,7 @@ RUN echo "deb http://http.debian.net/debian/ stretch main contrib non-free" > /e
       libglib2.0-0 \
       libodbc1 \
       libmagickwand-6.q16-3 \
+      libmono-system-runtime-serialization4.0-cil \
       dbus-x11 \
   && rm -rf  \
     /var/lib/apt/lists/* \

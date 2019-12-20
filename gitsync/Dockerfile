@@ -34,6 +34,7 @@ RUN echo "deb http://http.debian.net/debian/ stretch main contrib non-free" > /e
 ENV LANG ru_RU.UTF-8
 
 ADD https://github.com/oscript-library/gitsync/releases/download/$gitsync_ver/gitsync.exe /gitsync.exe
+RUN chmod 755 /gitsync.exe
 
 ENTRYPOINT ["mono", "gitsync.exe"]
 CMD ["usage"]

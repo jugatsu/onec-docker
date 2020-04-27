@@ -27,7 +27,7 @@ RUN chmod +x /download.sh \
   && for file in *.tar.gz; do tar -zxf "$file"; done \
   && rm -rf *.tar.gz \
   && ./1ce-installer-cli install all --ignore-hardware-checks \
-  && rm -rf /tmp \
+  && rm -rf /tmp/* \
   && mv $(dirname $(find /opt/1C/1CE -name ring)) /opt/1C/1CE/components/1c-enterprise-ring
 
 ENV PATH="/opt/1C/1CE/components/1c-enterprise-ring:$PATH"

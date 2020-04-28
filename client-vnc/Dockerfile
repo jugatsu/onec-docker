@@ -8,10 +8,16 @@ COPY --from=base /opt /opt
 
 ADD https://github.com/just-containers/s6-overlay/releases/download/v1.21.8.0/s6-overlay-amd64.tar.gz /tmp/
 
-RUN echo "deb http://http.debian.net/debian/ stretch main contrib non-free" > /etc/apt/sources.list \
+RUN apt-get update \
+  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    dirmngr \
+    gnupg \
+  && echo "deb http://http.debian.net/debian/ stretch main contrib non-free" > /etc/apt/sources.list \
   && echo "deb http://http.debian.net/debian/ stretch-updates main contrib non-free" >> /etc/apt/sources.list \
   && echo "deb http://security.debian.org/ stretch/updates main contrib non-free" >> /etc/apt/sources.list \
   && echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections \
+  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 40976EAF437D05B5 \
+  && echo "deb http://security.ubuntu.com/ubuntu xenial-security main" > /etc/apt/sources.list.d/xenial-security.list \
   && apt-get update \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
       ca-certificates \
@@ -23,6 +29,7 @@ RUN echo "deb http://http.debian.net/debian/ stretch main contrib non-free" > /e
       libgsf-1-114 \
       libglib2.0-0 \
       libodbc1 \
+      libpng12-0 \
       libmagickwand-6.q16-3 \
       dbus-x11 \
       at-spi2-core \

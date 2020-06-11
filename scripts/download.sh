@@ -41,7 +41,6 @@ then
 fi
 
 if [[ "$installer_type" == "edt" ]]; then
-
 EDTPATHLINK=$(curl -s -G \
     -b /tmp/cookies.txt \
     --data-urlencode "nick=DevelopmentTools10" \

@@ -52,6 +52,7 @@ RUN set -xe \
       locales \
       imagemagick \
       fontconfig \
+      apache2 \
   && rm -rf \
     /var/lib/apt/lists/* \
     /var/cache/debconf \
@@ -67,21 +68,9 @@ VOLUME /home/usr1cv8/.1cv8/ /var/log/1C
 
 COPY ./server/logcfg.xml /home/usr1cv8/.1cv8/1C/1cv8/conf
 
-RUN apt-get update \
-  && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
-    apache2 \
-  && rm -rf  \
-    /var/lib/apt/lists/* \
-    /var/cache/debconf \
-    /tmp/*
-
-RUN echo "export APACHE_RUN_DIR=/etc/apache2\$SUFFIX" >> /etc/apache2/envvars \
-  && echo "export APACHE_PID_FILE=/etc/apache2\$SUFFIX/apache2.pid" >> /etc/apache2/envvars
-
-COPY ./ws/docker-entrypoint.sh /
-RUN chmod 755 /docker-entrypoint.sh \
-  && chmod +x /docker-entrypoint.sh
-
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENV APACHE_RUN_DIR=/etc/apache2\$SUFFIX
+ENV APACHE_PID_FILE=/etc/apache2\$SUFFIX/apache2.pid
 
 EXPOSE 80
+
+CMD ["apache2", "-DFOREGROUND"]

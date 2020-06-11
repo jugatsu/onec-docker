@@ -38,7 +38,7 @@ ADD https://github.com/tianon/gosu/releases/download/$gosu_ver/gosu-amd64 /bin/g
 RUN chmod +x /bin/gosu
 
 FROM debian:stretch-slim
-LABEL maintainer="Alexander Strizhachuk <a.strizhachuk@yandex.ru>"
+LABEL maintainers="Anton Kvashenkin <anton.jugatsu@gmail.com>, Alexander Strizhachuk <a.strizhachuk@yandex.ru>"
 
 ARG onec_uid="999"
 ARG onec_gid="999"
@@ -67,9 +67,6 @@ RUN groupadd -r grp1cv8 --gid=$onec_gid \
 VOLUME /home/usr1cv8/.1cv8/ /var/log/1C
 
 COPY ./server/logcfg.xml /home/usr1cv8/.1cv8/1C/1cv8/conf
-
-ENV APACHE_RUN_DIR=/etc/apache2\$SUFFIX
-ENV APACHE_PID_FILE=/etc/apache2\$SUFFIX/apache2.pid
 
 EXPOSE 80
 

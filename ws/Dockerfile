@@ -68,6 +68,10 @@ VOLUME /home/usr1cv8/.1cv8/ /var/log/1C
 
 COPY ./server/logcfg.xml /home/usr1cv8/.1cv8/1C/1cv8/conf
 
-EXPOSE 80
+STOPSIGNAL SIGWINCH
 
-CMD ["apache2", "-DFOREGROUND"]
+COPY ./ws/apache2-foreground /usr/local/bin/
+WORKDIR /var/www/html
+
+EXPOSE 80
+CMD ["apache2-foreground"]

@@ -17,18 +17,30 @@ services:
   db:
     image: rsyuzyov/docker-postgresql-pro-1c:${ONEC_PG_VERSION}
     ports:
-      - "${PG_PORT}:5432"
+      - "${PG_PORT:-5432}:5432"
     volumes:
       - db_data:/var/lib/postgresql
     networks:
-      back_net:
-        aliases:
-          - db
+      - back_net
+
+  web:
+    image: ${DOCKER_USERNAME}/onec-server-ws:${ONEC_VERSION}
+    command: >
+      bash -c "/opt/1C/v8.3/x86_64/webinst -apache24 -wsdir client -dir /var/www/client -connstr 'Srvr=srv;Ref=database;'
+      && /opt/1C/v8.3/x86_64/webinst -apache24 -wsdir api -dir /var/www/api -connstr 'Srvr=srv;Ref=database;usr=site;pwd=pwd'
+      && /usr/sbin/apache2ctl -DFOREGROUND"
+    ports:
+      - "${HTTP_PORT:-80}:80"
+    volumes:
+      - srv_data:/home/usr1cv8/.1cv8
+      - srv_log:/var/log/1C
+    networks:
+      - back_net
 
   repo:
     image: ${DOCKER_USERNAME}/onec-crs:${ONEC_VERSION}
     ports:
-      - "${CRS_PORT}:1542"
+      - "${CRS_PORT:-1542}:1542"
     volumes:
       - repo_data:/home/usr1cv8/.1cv8
     networks:
@@ -39,7 +51,7 @@ services:
     entrypoint: /opt/1C/v8.3/x86_64/ras
     command: "cluster srv:1540"
     ports:
-      - "${RAS_PORT}:1545"
+      - "${RAS_PORT:-1545}:1545"
     networks:
       - back_net
 
@@ -49,7 +61,7 @@ services:
       - "5900:5900"
     volumes:
       - client_data:/home/usr1cv8/.1cv8
-      - ${PWD}/nethasp.ini:/opt/1C/v8.3/x86_64/conf/nethasp.ini
+      - ./nethasp.ini:/opt/1C/v8.3/x86_64/conf/nethasp.ini
     networks:
       - back_net
 

@@ -43,9 +43,9 @@ $ docker-compose up -d
 ```
 
 # Оглавление
-
 - [Сервер](#сервер)
 - [Сервер с дополнительными языками](#Сервер-с-дополнительными-языками)
+- [Сервер с поддержкой веб-сервера Apache](#Сервер-с-поддержкой-веб-сервера-Apache)
 - [Клиент](#support)
 - [Клиент с поддержкой VNC](#support)
 - [Клиент с дополнительными языками](#support)
@@ -78,6 +78,17 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
   --build-arg nls_enabled=true \
   -t ${DOCKER_USERNAME}/onec-server-nls:${ONEC_VERSION} \
   -f server/Dockerfile .
+```
+
+## Сервер с поддержкой веб-сервера Apache
+[(Наверх)](#Оглавление)
+```bash
+docker build \
+  --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
+  --build-arg ONEC_PASSWORD=${ONEC_PASSWORD} \
+  --build-arg ONEC_VERSION=${ONEC_VERSION} \
+  -t ${DOCKER_USERNAME}/onec-server-ws:${ONEC_VERSION} \
+  -f ws/Dockerfile .
 ```
 
 ## Клиент

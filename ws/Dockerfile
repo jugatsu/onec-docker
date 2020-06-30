@@ -40,8 +40,8 @@ RUN chmod +x /bin/gosu
 FROM debian:stretch-slim
 LABEL maintainers="Anton Kvashenkin <anton.jugatsu@gmail.com>, Alexander Strizhachuk <a.strizhachuk@yandex.ru>"
 
-ARG onec_uid="999"
-ARG onec_gid="999"
+ARG onec_uid="2001"
+ARG onec_gid="2001"
 
 COPY --from=base /opt /opt
 COPY --from=base /bin/gosu /bin/gosu
@@ -59,19 +59,28 @@ RUN set -xe \
   && localedef -i ru_RU -c -f UTF-8 -A /usr/share/locale/locale.alias ru_RU.UTF-8
 ENV LANG ru_RU.UTF-8
 
+RUN sed -i 's/export APACHE_RUN_USER=www-data/export APACHE_RUN_USER=usr1cv8/g' /etc/apache2/envvars \
+  && sed -i 's/export APACHE_RUN_GROUP=www-data/export APACHE_RUN_GROUP=grp1cv8/g' /etc/apache2/envvars
+
 RUN groupadd -r grp1cv8 --gid=$onec_gid \
   && useradd -r -g grp1cv8 --uid=$onec_uid --home-dir=/home/usr1cv8 --shell=/bin/bash usr1cv8 \
-  && mkdir -p /var/log/1C /home/usr1cv8/.1cv8/1C/1cv8/conf \
-  && chown -R usr1cv8:grp1cv8 /var/log/1C /home/usr1cv8
+  && mkdir -p /opt/1C/v8.3/x86_64/conf /home/usr1cv8/.1cv8 /var/log/1C \
+  && chown -R usr1cv8:grp1cv8 /opt/1C /home/usr1cv8 /var/log/1C \
+  && chmod g+rw /var/log/1C
 
 VOLUME /home/usr1cv8/.1cv8/ /var/log/1C
 
-COPY ./server/logcfg.xml /home/usr1cv8/.1cv8/1C/1cv8/conf
+COPY ./configs/server/rootfs/ /
 
 STOPSIGNAL SIGWINCH
 
 COPY ./ws/apache2-foreground /usr/local/bin/
-WORKDIR /var/www/html
+
+RUN chmod 755 /usr/local/bin/apache2-foreground \
+  && chmod +x /usr/local/bin/apache2-foreground
+
+WORKDIR /var/www
 
 EXPOSE 80
+
 CMD ["apache2-foreground"]

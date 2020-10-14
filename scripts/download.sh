@@ -41,11 +41,15 @@ then
 fi
 
 if [[ "$installer_type" == "edt" ]]; then
+
+caption1="1C:Enterprise Development Tools для Linux 64 Bit"
+caption2="Дистрибутив для оффлайн установки 1C:EDT для ОС Linux 64 бит"
+
 EDTPATHLINK=$(curl -s -G \
 -b /tmp/cookies.txt \
 --data-urlencode "nick=DevelopmentTools10" \
 --data-urlencode "ver=$ONEC_VERSION" \
-https://releases.1c.ru/version_files | grep -oP '(?<=a href=")[^"]+path=(.*)(?=">.*для Linux 64 Bit<)' | grep -oP '(?<=path=).*')
+https://releases.1c.ru/version_files | grep -oP "(?<=a href=\")[^\"]+path=(.*)(?=\">(?:$caption1|$caption2)<)" | grep -oP '(?<=path=).*')
 
 EDTLINK=$(curl -s -G \
     -b /tmp/cookies.txt \

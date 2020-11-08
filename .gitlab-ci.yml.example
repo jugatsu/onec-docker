@@ -1,0 +1,137 @@
+default:
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
+  tags:
+    - 1c
+
+stages:
+  - build client
+  - build vnc
+  - build server
+  - build oscript
+  - test
+  - release
+
+variables:
+  DOCKER_USERNAME: $CI_REGISTRY_IMAGE
+  BUILD_ALL: "false"
+
+.common_release: &common_release
+  script:
+    - docker pull $CONTAINER_TEST_IMAGE
+    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
+    - docker push $CONTAINER_RELEASE_IMAGE
+  environment:
+    name: release
+  when: manual
+
+build:client:
+  stage: build client
+  variables:
+    CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE/client:$ONEC_VERSION
+  script:
+    - docker build --build-arg ONEC_USERNAME=$ONEC_USERNAME --build-arg ONEC_PASSWORD=$ONEC_PASSWORD --build-arg ONEC_VERSION=$ONEC_VERSION --pull -t $CONTAINER_TEST_IMAGE -f client/Dockerfile .
+    - docker push $CONTAINER_TEST_IMAGE
+  rules:
+    - if: '$INSTALLER_TYPE == "client"'
+    - if: '$BUILD_ALL == "true"'
+
+build:vnc:
+  stage: build vnc
+  variables:
+    CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE/client-vnc:$ONEC_VERSION
+  script:
+    - docker build --build-arg ONEC_USERNAME=$ONEC_USERNAME --build-arg ONEC_PASSWORD=$ONEC_PASSWORD --build-arg ONEC_VERSION=$ONEC_VERSION --build-arg DOCKER_USERNAME=$DOCKER_USERNAME --pull -t $CONTAINER_TEST_IMAGE -f client-vnc/Dockerfile .
+    - docker push $CONTAINER_TEST_IMAGE
+  rules:
+    - if: '$INSTALLER_TYPE == "client"'
+    - if: '$INSTALLER_TYPE == "client-vnc"'
+    - if: '$BUILD_ALL == "true"'
+
+build:server:
+  stage: build server
+  variables:
+    CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE/server:$ONEC_VERSION
+  script:
+    - docker build --build-arg ONEC_USERNAME=$ONEC_USERNAME --build-arg ONEC_PASSWORD=$ONEC_PASSWORD --build-arg ONEC_VERSION=$ONEC_VERSION --pull -t $CONTAINER_TEST_IMAGE -f server/Dockerfile .
+    - docker push $CONTAINER_TEST_IMAGE
+  rules:
+    - if: '$INSTALLER_TYPE == "server"'
+    - if: '$BUILD_ALL == "true"'
+
+build:oscript:
+  stage: build oscript
+  variables:
+    CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE/client-oscript-$ONESCRIPT_VERSION:$ONEC_VERSION
+  script:
+    - docker build --build-arg DOCKER_USERNAME=$DOCKER_USERNAME --build-arg BASE_IMAGE=client-vnc --build-arg BASE_TAG=$ONEC_VERSION --build-arg ONESCRIPT_VERSION=$ONESCRIPT_VERSION --build-arg ONESCRIPT_PACKAGES="gitsync vanessa-runner vanessa-automation" --pull -t $CONTAINER_TEST_IMAGE -f oscript/Dockerfile .
+    - docker push $CONTAINER_TEST_IMAGE
+  rules:
+    - if: '$INSTALLER_TYPE == "oscript"'
+    - if: '$BUILD_ALL == "true"'
+
+run:vnc:
+  stage: test
+  variables:
+    CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE/client-vnc:$ONEC_VERSION
+  image:
+    name: $CONTAINER_TEST_IMAGE
+  before_script: []
+  script:
+    - "/opt/1C/v8.3/x86_64/1cv8 CREATEINFOBASE File=./build/db /DumpResult ./build/create.log"
+  rules:
+    - if: '$INSTALLER_TYPE == "client"'
+    - if: '$INSTALLER_TYPE == "client-vnc"'
+    - if: '$BUILD_ALL == "true"'
+  tags:
+    - docker
+
+run:server:
+  stage: test
+  variables:
+    CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE/server:$ONEC_VERSION
+  script:
+    - docker pull $CONTAINER_TEST_IMAGE
+    - docker run --rm $CONTAINER_TEST_IMAGE bash -c exit
+  rules:
+    - if: '$INSTALLER_TYPE == "server"'
+    - if: '$BUILD_ALL == "true"'
+
+run:oscript:
+  stage: test
+  variables:
+    CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE/client-oscript-$ONESCRIPT_VERSION:$ONEC_VERSION
+  script:
+    - docker pull $CONTAINER_TEST_IMAGE
+    - docker run --rm $CONTAINER_TEST_IMAGE oscript -version
+  rules:
+    - if: '$INSTALLER_TYPE == "oscript"'
+    - if: '$BUILD_ALL == "true"'
+
+push:client:
+  stage: release
+  variables:
+    CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE/client:$ONEC_VERSION
+    CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE/client:latest
+  <<: *common_release
+
+push:vnc:
+  stage: release
+  variables:
+    CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE/client-vnc:$ONEC_VERSION
+    CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE/client-vnc:latest
+  <<: *common_release
+
+push:server:
+  stage: release
+  variables:
+    CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE/server:$ONEC_VERSION
+    CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE/server:latest
+  <<: *common_release
+
+push:oscript:
+  stage: release
+  variables:
+    CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE/client-oscript-$ONESCRIPT_VERSION:$ONEC_VERSION
+    CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE/client-oscript-$ONESCRIPT_VERSION:latest
+  <<: *common_release

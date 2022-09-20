@@ -44,21 +44,21 @@ $ docker-compose up -d
 
 # Оглавление
 - [Сервер](#сервер)
-- [Сервер с дополнительными языками](#Сервер-с-дополнительными-языками)
-- [Сервер с поддержкой веб-сервера Apache](#Сервер-с-поддержкой-веб-сервера-Apache)
-- [Клиент](#support)
-- [Клиент с поддержкой VNC](#support)
-- [Клиент с дополнительными языками](#support)
-- [Тонкий клиент](#support)
-- [Тонкий клиент с дополнительными языками](#support)
-- [Хранилище конфигурации](#contributing)
-- [rac-gui](#license)
-- [gitsync](#license)
-- [oscript](#license)
-- [vanessa-runner](#license)
+- [Сервер с дополнительными языками](#сервер-с-дополнительными-языками)
+- [Сервер с поддержкой веб-сервера Apache](#сервер-с-поддержкой-веб-сервера-apache)
+- [Клиент](#клиент)
+- [Клиент с поддержкой VNC](#клиент-с-поддержкой-vnc)
+- [Клиент с дополнительными языками](#клиент-с-дополнительными-языками)
+- [Тонкий клиент](#тонкий-клиент)
+- [Тонкий клиент с дополнительными языками](#тонкий-клиент-с-дополнительными-языками)
+- [Хранилище конфигурации](#хранилище-конфигурации)
+- [rac-gui](#rac-gui)
+- [gitsync](#gitsync)
+- [oscript](#oscript)
+- [vanessa-runner](#vanessa-runner)
 
 ## Сервер
-[(Наверх)](#Оглавление)
+[(Наверх)](#оглавление)
 
 ```bash
 docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
@@ -69,7 +69,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
 ```
 
 ## Сервер с дополнительными языками
-[(Наверх)](#Оглавление)
+[(Наверх)](#оглавление)
 
 ```bash
 docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
@@ -81,7 +81,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
 ```
 
 ## Сервер с поддержкой веб-сервера Apache
-[(Наверх)](#Оглавление)
+[(Наверх)](#оглавление)
 ```bash
 docker build \
   --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
@@ -92,7 +92,7 @@ docker build \
 ```
 
 ## Клиент
-[(Наверх)](#Оглавление)
+[(Наверх)](#оглавление)
 
 ```bash
 docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
@@ -103,7 +103,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
 ```
 
 ## Клиент с поддержкой VNC
-[(Наверх)](#Оглавление)
+[(Наверх)](#оглавление)
 
 ```bash
 docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
@@ -113,7 +113,7 @@ docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
 ```
 
 ## Клиент с дополнительными языками
-[(Наверх)](#Оглавление)
+[(Наверх)](#оглавление)
 
 ```bash
 docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
@@ -125,7 +125,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
 ```
 
 ## Тонкий клиент
-[(Наверх)](#Оглавление)
+[(Наверх)](#оглавление)
 
 ```bash
 docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
@@ -136,7 +136,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
 ```
 
 ## Тонкий клиент с дополнительными языками
-[(Наверх)](#Оглавление)
+[(Наверх)](#оглавление)
 
 ```bash
 docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
@@ -148,7 +148,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
 ```
 
 ## Хранилище конфигурации
-[(Наверх)](#Оглавление)
+[(Наверх)](#оглавление)
 
 ```bash
 docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
@@ -159,7 +159,7 @@ docker build --build-arg ONEC_USERNAME=${ONEC_USERNAME} \
 ```
 
 ## rac-gui
-[(Наверх)](#Оглавление)
+[(Наверх)](#оглавление)
 
 ```bash
 docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
@@ -169,7 +169,7 @@ docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
 ```
 
 ## gitsync
-[(Наверх)](#Оглавление)
+[(Наверх)](#оглавление)
 
 ```bash
 docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
@@ -179,7 +179,7 @@ docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
 ```
 
 ## oscript
-[(Наверх)](#Оглавление)
+[(Наверх)](#оглавление)
 
 ```bash
 docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
@@ -189,7 +189,7 @@ docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
 ```
 
 ## vanessa-runner
-[(Наверх)](#Оглавление)
+[(Наверх)](#оглавление)
 
 ```bash
 docker build --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} \
